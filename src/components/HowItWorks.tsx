@@ -31,12 +31,12 @@ export default function HowItWorks() {
   const spineHeight = useTransform(spineProgress, [0, 1], ['0%', '100%']);
 
   return (
-    <section ref={sectionRef} className="section" style={{ backgroundColor: 'var(--bg-color)', overflow: 'hidden' }}>
+    <section ref={sectionRef} className="how-it-works-section section" style={{ backgroundColor: 'var(--bg-color)', overflow: 'hidden' }}>
       <div className="container">
         
         {/* Header */}
-        <div className="bento-grid" style={{ marginBottom: '100px' }}>
-          <div style={{ gridColumn: 'span 5' }}>
+        <div className="how-it-works-header" style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '40px', marginBottom: '100px' }}>
+          <div style={{ gridColumn: 'span 5' }} className="header-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -52,7 +52,7 @@ export default function HowItWorks() {
               text="How the story changes."
             />
           </div>
-          <div style={{ gridColumn: 'span 7' }}>
+          <div style={{ gridColumn: 'span 7' }} className="header-right">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Vertical Timeline Steps */}
-        <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '80px', paddingLeft: '40px' }}>
+        <div className="timeline-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '80px', paddingLeft: '40px' }}>
           
           {/* Vertical Spine */}
           <div style={{
@@ -94,6 +94,7 @@ export default function HowItWorks() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ type: 'spring', stiffness: 80, damping: 20, delay: i * 0.1 }}
+                className="timeline-step"
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.5fr)',
@@ -122,7 +123,7 @@ export default function HowItWorks() {
                 />
 
                 {/* Number & Title */}
-                <div>
+                <div className="step-left">
                   <div style={{
                     fontSize: '0.75rem',
                     letterSpacing: '0.2em',
@@ -145,6 +146,7 @@ export default function HowItWorks() {
                   whileInView={{ opacity: 0.75 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.1 }}
+                  className="step-right"
                   style={{ fontSize: '1.1rem', lineHeight: 1.7, paddingTop: '32px' }}
                 >
                   {step.description}
@@ -155,6 +157,28 @@ export default function HowItWorks() {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .how-it-works-header {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .header-left, .header-right {
+            grid-column: span 12 !important;
+          }
+          .timeline-step {
+            grid-template-columns: 1fr !important;
+            gap: 0px !important;
+          }
+          .step-right {
+            padding-top: 16px !important;
+          }
+          .timeline-container {
+             gap: 60px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

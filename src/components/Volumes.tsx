@@ -45,7 +45,7 @@ export default function Volumes() {
   ];
 
   return (
-    <section id="services" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+    <section id="services" className="volumes-section section" style={{ position: 'relative', overflow: 'hidden' }}>
       <div style={{
         position: 'absolute',
         top: 0, left: 0, right: 0, bottom: 0,
@@ -57,7 +57,7 @@ export default function Volumes() {
       }} />
 
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '80px', marginBottom: '100px' }}>
+        <div className="volumes-header" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', marginBottom: '100px' }}>
           <div className="sticky-top">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -75,7 +75,7 @@ export default function Volumes() {
               transition={{ delay: 0.1 }}
               className="heading-lg"
             >
-              The Volumes: <br/> Three Roads.
+              The Volumes: <br className="desktop-only" /> Three Roads.
             </motion.h2>
           </div>
           <div>
@@ -91,7 +91,7 @@ export default function Volumes() {
           </div>
         </div>
 
-        <div style={{
+        <div className="volumes-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(12, 1fr)',
           gap: '24px'
@@ -103,7 +103,7 @@ export default function Volumes() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="bento-card"
+              className="bento-card volume-card"
               style={{
                 gridColumn: 'span 4',
                 display: 'flex',
@@ -119,7 +119,7 @@ export default function Volumes() {
                     <h3 style={{ fontSize: '2.8rem', lineHeight: 1 }}>{vol.title}</h3>
                     <div style={{ fontSize: '1.1rem', opacity: 0.6, marginTop: '8px' }}>{vol.subtitle}</div>
                   </div>
-                  <div style={{ 
+                  <div className="volume-number" style={{ 
                     width: '48px', 
                     height: '48px', 
                     borderRadius: '50%', 
@@ -152,10 +152,31 @@ export default function Volumes() {
 
       <style>{`
         @media (max-width: 900px) {
-          .bento-card { grid-column: span 12 !important; }
-        }
-        @media (min-width: 900px) {
-          .bento-card { grid-column: span 4 !important; }
+          .volumes-header {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+            margin-bottom: 60px !important;
+          }
+          .sticky-top {
+            position: relative !important;
+            top: 0 !important;
+          }
+          .volumes-grid {
+            grid-template-columns: 1fr !important;
+            display: flex !important;
+            flex-direction: column !important;
+          }
+          .volume-card {
+            grid-column: span 12 !important;
+            min-height: auto !important;
+            padding: 32px !important;
+          }
+          .volume-card h3 {
+            font-size: 2.2rem !important;
+          }
+          .desktop-only {
+            display: none !important;
+          }
         }
       `}</style>
     </section>

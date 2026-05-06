@@ -42,14 +42,14 @@ export default function Hero() {
   }, [mouseX, mouseY]);
 
   return (
-    <section className="section" style={{ 
-      height: '100vh', 
+    <section className="hero-section section" style={{ 
+      minHeight: '100vh', 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
       position: 'relative',
       overflow: 'hidden',
-      padding: 0
+      padding: '120px 0'
     }}>
       {/* Background Image with Overlay */}
       <div style={{
@@ -62,7 +62,6 @@ export default function Hero() {
         backgroundColor: '#000',
         zIndex: -2,
       }}>
-        {/* Subtle dark overlay to ensure text contrast over bright areas of the cinematic image */}
         <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
@@ -71,8 +70,9 @@ export default function Hero() {
         }} />
       </div>
 
-      {/* Mouse Ripple Overlay */}
+      {/* Mouse Ripple Overlay - Only visible on desktop */}
       <motion.div 
+        className="desktop-only"
         style={{
           position: 'absolute',
           width: '300px',
@@ -86,7 +86,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="container" style={{ textAlign: 'center', zIndex: 1, paddingBottom: '24px' }}>
+      <div className="container" style={{ textAlign: 'center', zIndex: 1 }}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -104,14 +104,14 @@ export default function Hero() {
           </motion.div>
           
           <motion.h1 variants={itemVariants} className="heading-xl" style={{ marginBottom: '40px', color: '#fff', textShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
-            The story is not written. <br /> It is authored.
+            The story is not written. <br className="desktop-only" /> It is authored.
           </motion.h1>
 
-          <motion.p variants={itemVariants} style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '650px', margin: '0 auto 64px', color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>
+          <motion.p variants={itemVariants} style={{ fontSize: '1.2rem', opacity: 0.9, maxWidth: '650px', margin: '0 auto 64px', color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>
             Step out of autopilot and take back the pen. We provide the psychological frameworks to help you shift from reactive habits to intentional authoring.
           </motion.p>
 
-          <motion.div variants={itemVariants} style={{ display: 'flex', gap: '24px', justifyContent: 'center' }}>
+          <motion.div className="hero-buttons" variants={itemVariants} style={{ display: 'flex', gap: '24px', justifyContent: 'center', width: '100%' }}>
             <a href="#services" className="button" style={{ backgroundColor: '#fff', color: '#000', border: 'none' }}>
               Claim Your Clarity
             </a>
@@ -131,7 +131,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div style={{
+      <div className="desktop-only" style={{
         position: 'absolute',
         bottom: '40px',
         left: '50%',
@@ -141,6 +141,25 @@ export default function Hero() {
       }}>
         <div className="text-label" style={{ fontSize: '0.65rem', color: '#fff' }}>Scroll to Explore</div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-section {
+            padding: 140px 0 100px 0 !important;
+          }
+          .hero-buttons {
+            flex-direction: column;
+            gap: 16px !important;
+            padding: 0 10vw;
+          }
+          .hero-buttons .button {
+            width: 100%;
+          }
+          .desktop-only {
+            display: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

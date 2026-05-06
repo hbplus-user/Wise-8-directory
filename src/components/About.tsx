@@ -15,9 +15,9 @@ const itemVariants: Variants = {
 
 export default function About() {
   return (
-    <section id="about" className="section" style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)' }}>
+    <section id="about" className="about-section section" style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)' }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '80px', color: 'var(--text-primary)' }}>
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '80px', color: 'var(--text-primary)' }}>
           
           <div className="sticky-top">
             <motion.div
@@ -36,7 +36,7 @@ export default function About() {
               transition={{ delay: 0.1 }}
               className="heading-lg"
             >
-              Meet the <br/> Editor.
+              Meet the <br className="desktop-only" /> Editor.
             </motion.h2>
           </div>
 
@@ -48,6 +48,7 @@ export default function About() {
           >
             <motion.div
               variants={itemVariants}
+              className="about-image-container"
               style={{
                 width: '100%',
                 height: '500px',
@@ -82,7 +83,7 @@ export default function About() {
               Real people. Real change.
             </motion.p>
 
-            <motion.div variants={itemVariants} style={{ fontSize: '1.25rem', lineHeight: 1.7, opacity: 0.8, color: 'var(--text-primary)' }}>
+            <motion.div variants={itemVariants} style={{ fontSize: '1.2rem', lineHeight: 1.7, opacity: 0.8, color: 'var(--text-primary)' }}>
               <p style={{ marginBottom: '24px' }}>
                 Selina Pattnaik is a Master NLP Practitioner, Therapist, and Life Coach. Her journey into transformation began after a bold transition from the legal profession to becoming a Business Analyst, and finally to behavioral science – a shift that reflects her fearless approach to life.
               </p>
@@ -92,11 +93,31 @@ export default function About() {
             </motion.div>
 
             <motion.div variants={itemVariants} style={{ marginTop: '48px' }}>
-              <a href="https://www.linkedin.com/in/selina-pattnaik" target="_blank" rel="noopener noreferrer" className="button">Connect with Selina</a>
+              <a href="https://www.linkedin.com/in/selina-pattnaik" target="_blank" rel="noopener noreferrer" className="button" style={{ width: '100%', maxWidth: '300px' }}>Connect with Selina</a>
             </motion.div>
           </motion.div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          .about-image-container {
+            height: 400px !important;
+            margin-bottom: 32px !important;
+          }
+          .about-section .button {
+            width: 100% !important;
+            max-width: none !important;
+          }
+          .desktop-only {
+            display: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

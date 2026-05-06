@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <>
       {/* The Cliffhanger */}
-      <section className="section" style={{ backgroundColor: '#0c0c0c', color: '#fff' }}>
+      <section className="epilogue-section section" style={{ backgroundColor: '#0c0c0c', color: '#fff' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,7 @@ export default function Footer() {
             className="heading-lg"
             style={{ color: '#fff', marginBottom: '48px' }}
           >
-            This is the end of the <br/> prologue.
+            This is the end of the <br className="desktop-only" /> prologue.
           </motion.h2>
           
           <motion.p
@@ -45,6 +45,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{ fontSize: '1.4rem', opacity: 0.7, marginBottom: '64px', lineHeight: 1.6, maxWidth: '800px', margin: '0 auto 64px' }}
+            className="epilogue-text"
           >
             The burnout, the autopilot, the feeling of being stuck—that wasn't the whole story. That was just the prologue. The page is turning. The psychological frameworks are waiting.
           </motion.p>
@@ -62,7 +63,7 @@ export default function Footer() {
         </div>
       </section>
 
-      <section id="contact" className="section" style={{ 
+      <section id="contact" className="contact-section section" style={{ 
         backgroundImage: 'linear-gradient(rgba(12,12,12,0.85), rgba(12,12,12,0.85)), url(/footer_bg.png)', 
         backgroundSize: 'cover', 
         backgroundRepeat: 'no-repeat',
@@ -79,6 +80,7 @@ export default function Footer() {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ staggerChildren: 0.1 }}
+              className="contact-info"
             >
               <div className="text-label" style={{ marginBottom: '24px', color: 'rgba(255,255,255,0.5)' }}>The Blank Page</div>
               <h2 className="heading-lg" style={{ color: '#fff', marginBottom: '48px', lineHeight: 1.1 }}>
@@ -88,7 +90,7 @@ export default function Footer() {
                 Whether you are seeking individual clarity or aiming to rewrite your team's culture, the next chapter starts with a conversation.
               </motion.p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '40px' }}>
+              <div className="contact-details" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '40px' }}>
                 <motion.div variants={itemVariants}>
                   <div className="text-label" style={{ fontSize: '0.65rem', marginBottom: '12px', color: 'rgba(255,255,255,0.5)' }}>Email Us</div>
                   <a href="mailto:selinapattnaik.8@gmail.com" style={{ fontSize: '1.2rem', color: '#fff' }}>selinapattnaik.8@gmail.com</a>
@@ -108,7 +110,7 @@ export default function Footer() {
               style={{ backgroundColor: '#ffffff', color: '#000', width: '100%', border: 'none', boxShadow: '0 20px 40px rgba(0,0,0,0.5)' }}
             >
               <form style={{ display: 'flex', flexDirection: 'column', gap: '32px' }} onSubmit={e => e.preventDefault()}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
+                <div className="form-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
                   <input type="text" placeholder="Name" style={inputStyleLight} />
                   <input type="email" placeholder="Email" style={inputStyleLight} />
                 </div>
@@ -140,7 +142,7 @@ export default function Footer() {
             </motion.div>
           </div>
           
-          <div style={{ marginTop: '120px', paddingTop: '40px', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', opacity: 0.5, fontSize: '0.7rem', color: '#fff' }}>
+          <div className="footer-bottom" style={{ marginTop: '120px', paddingTop: '40px', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', opacity: 0.5, fontSize: '0.7rem', color: '#fff' }}>
              <div>© {new Date().getFullYear()} The Wise 8. All rights reserved.</div>
              <div style={{ display: 'flex', gap: '24px' }}>
                <a href="#" style={{ color: '#fff' }}>Privacy Policy</a>
@@ -148,7 +150,36 @@ export default function Footer() {
              </div>
           </div>
         </div>
-      </section>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .epilogue-text {
+            font-size: 1.1rem !important;
+            margin-bottom: 40px !important;
+          }
+          .contact-section h2 {
+            margin-bottom: 32px !important;
+          }
+          .contact-info p {
+            font-size: 1.1rem !important;
+            margin-bottom: 40px !important;
+          }
+          .form-row {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          .footer-bottom {
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+            margin-top: 80px !important;
+          }
+          .desktop-only {
+            display: none !important;
+          }
+        }
+      `}</style>
+    </section>
     </>
   );
 }

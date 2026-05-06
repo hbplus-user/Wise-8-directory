@@ -18,14 +18,19 @@
   --radius-md: 24px;
   --radius-lg: 32px;
   --radius-full: 9999px;
-  --container-width: 1600px;
+  --container-width: 1400px;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none !important;
+}
+
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 html {
@@ -105,7 +110,7 @@ p {
 /* Layout & Grid */
 .container {
   max-width: var(--container-width); 
-  padding: 0 5vw;
+  padding: 0 6vw;
   margin: 0 auto;
 }
 
@@ -113,6 +118,12 @@ p {
   width: 60%;
   padding: 0 2vw;
   margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .container-60 {
+    width: 85%;
+  }
 }
 
 @media (max-width: 900px) {
@@ -232,8 +243,14 @@ body:active .custom-cursor-dot {
 }
 
 .section {
-  padding: 100px 0;
+  padding: 120px 0;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
 }
 
 /* Strict Vision 2x2 Alignment */
@@ -370,10 +387,16 @@ body:active .custom-cursor-dot {
   align-self: flex-start;
 }
 
-.heading-xl { font-size: clamp(3.5rem, 8vw, 7rem); letter-spacing: -0.04em; }
-.heading-lg { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -0.03em; }
-.heading-md { font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -0.02em; }
-.text-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; opacity: 0.5; }
+.heading-xl { font-size: clamp(2.8rem, 10vw, 7rem); letter-spacing: -0.04em; line-height: 1; }
+.heading-lg { font-size: clamp(2.2rem, 8vw, 4.5rem); letter-spacing: -0.03em; line-height: 1.05; }
+.heading-md { font-size: clamp(1.6rem, 5vw, 2.8rem); letter-spacing: -0.02em; line-height: 1.1; }
+.text-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; opacity: 0.6; }
+
+@media (max-width: 768px) {
+  .heading-xl { font-size: 2.8rem; }
+  .heading-lg { font-size: 2.2rem; }
+  .heading-md { font-size: 1.8rem; }
+}
 
 .metric-card .metric-label {
   max-height: 0;
@@ -413,6 +436,12 @@ a {
   height: 100%;
   pointer-events: none;
   z-index: 999999;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-dot, .cursor-wrapper {
+    display: none !important;
+  }
 }
 
 .custom-cursor-dot {

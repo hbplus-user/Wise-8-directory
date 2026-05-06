@@ -22,7 +22,7 @@ export default function Vision() {
   ];
 
   return (
-    <section className="section" style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)', textAlign: 'center' }}>
+    <section className="vision-section section" style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)', textAlign: 'center' }}>
       <div className="container" style={{ width: '100%' }}>
         
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '80px' }}>
@@ -51,7 +51,7 @@ export default function Vision() {
           >
             <motion.p
               variants={itemVariants}
-              style={{ fontSize: '1.4rem', opacity: 0.9, lineHeight: 1.6, color: 'var(--text-primary)', maxWidth: '750px', margin: '0 auto' }}
+              style={{ fontSize: '1.25rem', opacity: 0.9, lineHeight: 1.6, color: 'var(--text-primary)', maxWidth: '750px', margin: '0 auto' }}
             >
               At The Wise 8, our vision is simple but bold: <strong>To help 100,000 people unlearn their conditioning and master their own behavior.</strong> Through experiential learning rooted in psychology.
             </motion.p>
@@ -112,6 +112,17 @@ export default function Vision() {
             background-color: var(--border-subtle) !important;
             border-color: var(--text-primary) !important;
             transform: translateY(-5px);
+          }
+          @media (max-width: 768px) {
+            .vision-section p {
+              font-size: 1.1rem !important;
+            }
+            .vision-metrics-grid {
+              grid-template-columns: 1fr !important;
+            }
+            .vision-metrics-grid > div:last-child {
+              grid-column: span 1 !important;
+            }
           }
         `}</style>
       </div>

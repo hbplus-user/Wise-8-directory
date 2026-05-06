@@ -27,14 +27,14 @@ export default function Reviews() {
   const prev = () => setCurrent((c) => (c - 1 + reviews.length) % reviews.length);
 
   return (
-    <section className="section" style={{ backgroundColor: 'var(--bg-color)', overflow: 'hidden' }}>
+    <section className="reviews-section section" style={{ backgroundColor: 'var(--bg-color)', overflow: 'hidden' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 4rem)', marginBottom: '10px' }}>Reader Reviews</h2>
-          <p style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.6 }}>The results of a rewritten life.</p>
+          <h2 className="heading-md" style={{ marginBottom: '10px' }}>Reader Reviews</h2>
+          <p className="text-label" style={{ opacity: 0.6 }}>The results of a rewritten life.</p>
         </div>
 
-        <div style={{ position: 'relative', maxWidth: '800px', margin: '0 auto', textAlign: 'center', minHeight: '350px', padding: '0 8px' }}>
+        <div className="review-carousel" style={{ position: 'relative', maxWidth: '800px', margin: '0 auto', textAlign: 'center', minHeight: '350px' }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -42,7 +42,8 @@ export default function Reviews() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.05 }}
               transition={{ duration: 0.5 }}
-              style={{ position: 'absolute', width: '100%', top: 0, left: 0, padding: '0 56px' }}
+              className="review-card"
+              style={{ width: '100%', padding: '0 56px' }}
             >
               <div style={{ fontSize: 'clamp(1rem, 2vw, 1.45rem)', fontFamily: 'var(--font-serif)', lineHeight: 1.3, marginBottom: '40px', fontStyle: 'italic', color: 'var(--text-primary)' }}>
                 "{reviews[current].content}"
@@ -55,17 +56,39 @@ export default function Reviews() {
             </motion.div>
           </AnimatePresence>
 
-          <div style={{
-            position: 'absolute', top: '40%', left: '-4px', transform: 'translateY(-50%)',
-            cursor: 'pointer', opacity: 0.5, padding: '10px'
+          <div className="carousel-nav prev" style={{
+            position: 'absolute', top: '40%', left: '-20px', transform: 'translateY(-50%)',
+            cursor: 'pointer', opacity: 0.5, padding: '10px', zIndex: 10
           }} onClick={prev}><ChevronLeft size={32} /></div>
 
-          <div style={{
-            position: 'absolute', top: '40%', right: '-4px', transform: 'translateY(-50%)',
-            cursor: 'pointer', opacity: 0.5, padding: '10px'
+          <div className="carousel-nav next" style={{
+            position: 'absolute', top: '40%', right: '-20px', transform: 'translateY(-50%)',
+            cursor: 'pointer', opacity: 0.5, padding: '10px', zIndex: 10
           }} onClick={next}><ChevronRight size={32} /></div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .review-card {
+            padding: 0 !important;
+          }
+          .review-carousel {
+            min-height: 450px !important;
+          }
+          .carousel-nav {
+            top: auto !important;
+            bottom: -60px !important;
+            transform: none !important;
+          }
+          .carousel-nav.prev {
+            left: 30% !important;
+          }
+          .carousel-nav.next {
+            right: 30% !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
